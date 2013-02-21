@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @map.title
+%p
+  %b Latitude:
+  = @map.latitude
+%p
+  %b Longitude:
+  = @map.longitude
+
+= link_to 'Edit', edit_map_path(@map)
+\|
+= link_to 'Back', maps_path
