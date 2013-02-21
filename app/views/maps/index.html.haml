@@ -20,4 +20,32 @@
 
 %br
 
+
+%div#map
+:css
+  #map { height: 400px; }
+:javascript
+  L.Icon.Default.imagePath = "/assets";
+  var lat = 35.64483;
+  var lng = 139.40881;
+  var map = L.map('map').setView([lat, lng], 17);
+  var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  var osmAttrib = "Map data © OpenStreetMap contributors";
+  L.tileLayer(osmUrl, {
+    attribution: osmAttrib,
+    maxZoom: 20,
+  }).addTo(map);
+  $.ajax({
+    type: "GET",
+    url: "/maps.json",
+    dataType: "json",
+    success: function(maps) {
+      for(var i = 0; i < maps.length; i++) {
+        var m = maps[i];
+        var marker = L.marker([m.latitude, m.longitude]).addTo(map);
+        marker.bindPopup(m.title);
+      }
+    }
+  });
+
 = link_to 'New Map', new_map_path
