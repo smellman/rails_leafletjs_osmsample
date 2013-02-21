@@ -10,6 +10,5 @@
  *
  *= require_self
  *= require leaflet
- *= require leaflet.ie
  *= require_tree .
  */

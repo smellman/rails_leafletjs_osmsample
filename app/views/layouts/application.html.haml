@@ -3,6 +3,8 @@
   %head
     %title Mapapp
     = stylesheet_link_tag "application", :media => "all"
+    /[if lte IE 8]
+      = stylesheet_link_tag "leaflet.ie"
     = javascript_include_tag "application"
     = csrf_meta_tags
 %body
