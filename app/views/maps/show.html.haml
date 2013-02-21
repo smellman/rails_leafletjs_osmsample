@@ -10,6 +10,22 @@
   %b Longitude:
   = @map.longitude
 
+%div#map
+:css
+  #map { height: 400px; }
+:javascript
+  L.Icon.Default.imagePath = "/assets";
+  var lat = #{@map.latitude}
+  var lng = #{@map.longitude}
+  var map = L.map('map').setView([lat, lng], 17);
+  var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  var osmAttrib = "Map data © OpenStreetMap contributors";
+  L.tileLayer(osmUrl, {
+    attribution: osmAttrib,
+    maxZoom: 20,
+  }).addTo(map);
+  var marker = L.marker([lat, lng]).addTo(map);
+
 = link_to 'Edit', edit_map_path(@map)
 \|
 = link_to 'Back', maps_path
