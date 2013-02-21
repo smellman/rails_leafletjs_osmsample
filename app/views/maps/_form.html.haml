@@ -23,14 +23,16 @@
   #map { height: 400px; }
 :javascript
   L.Icon.Default.imagePath = "/assets";
-  var map = L.map('map').setView([35.64483, 139.40881], 17);
+  var lat = $("#map_latitude").val()? $("#map_latitude").val() : 35.64483;
+  var lng = $("#map_longitude").val()? $("#map_longitude").val() : 139.40881;
+  var map = L.map('map').setView([lat, lng], 17);
   var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   var osmAttrib = "Map data © OpenStreetMap contributors";
   L.tileLayer(osmUrl, {
     attribution: osmAttrib,
     maxZoom: 20,
   }).addTo(map);
-  var marker = L.marker([35.64483, 139.40881]).addTo(map);
+  var marker = L.marker([lat, lng]).addTo(map);
   map.on("click", function(e) {
     marker.setLatLng(e.latlng);
     $("#map_latitude").val(e.latlng.lat);
