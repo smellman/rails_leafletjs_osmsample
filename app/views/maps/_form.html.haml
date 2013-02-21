@@ -30,3 +30,10 @@
     attribution: osmAttrib,
     maxZoom: 20,
   }).addTo(map);
+  var marker = L.marker([35.64483, 139.40881]).addTo(map);
+  map.on("click", function(e) {
+    marker.setLatLng(e.latlng);
+    $("#map_latitude").val(e.latlng.lat);
+    $("#map_longitude").val(e.latlng.lng);
+  });
+  
